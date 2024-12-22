@@ -1,0 +1,108 @@
+:root {
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1400px;
+}
+
+* {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+/* RESPONSIVE DESIGN */
+    @media (max-width: 576px) {
+        * {
+            font-size: 14px;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            }
+    }
+    @media (min-width: 576px) {
+        * {
+            font-size: 16px;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1.25fr 2fr;
+
+            #graph-container {
+                grid-column: 1 / span 2;
+            }
+        }
+    }
+    @media (min-width: 992px) {
+        * {
+            font-size: 18px;
+        }
+        main {
+            grid-template-columns: 1fr 2fr 0.75fr;
+            grid-template-rows: 100px 50px 100px;
+
+            #child-container {
+                grid-area: 1 / 1 / 2 / 2;
+            }
+
+            #lab-container {
+                grid-area: 2 / 1 / 4 / 2;
+            }
+
+            #graph-container {
+                grid-area: 1 / 2 / 3 / 4;
+            }
+
+            #advice-container {
+                grid-area: 3 / 2 / 4 / 3;
+            }
+
+            #journal-container {
+                grid-area: 3 / 3 / 4 / 4;
+            }
+        }
+    }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    > #logo, > #about {
+        display: flex;
+        align-items: center;
+    }
+    > #logo {
+        justify-content: start;
+    }
+    > #about {
+        justify-content: end;
+    }
+
+}
+/* MAIN CONTAINER STYLES */
+.container {
+    border: 1px solid red;
+}
+
+
+.round-container {
+    border-radius: 1.5rem;
+}
+
+/* INDIVIDUAL CONTAINER STYLES */
+#child-container, #lab-container {
+    border-color: var(--color-grey);
+}
+
+#advice-container, #journal-container {
+    border: none;
+}
+
+#advice-container {
+    background-color: var(--color-yellow-light);
+}
+
+#journal-container {
+    background-color: var(--color-yellow-lighter)
+}
