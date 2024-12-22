@@ -1,0 +1,46 @@
+/* -- RESPONSIVE DESIGN BREAKPOINT AND LAYOUT --*/
+/* MOBILE -> SINGLE COLUMN VIEW */
+@media (max-width: 576px) {
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+}
+/* TABLET -> SPECILIZED GRID VIEW */
+@media (min-width: 576px) {
+    main {
+        display: grid;
+        grid-template-columns: 1.25fr 2fr;
+
+        #graph-container {
+            grid-column: 1 / span 2;
+        }
+    }
+}
+/* DESKTOP -> SPECILIZED DEKSTOP VIEW */
+@media (min-width: 992px) {
+    main {
+        grid-template-columns: 1fr 2fr 0.75fr;
+        grid-template-rows: 100px 50px 100px;
+
+        #child-container {
+            grid-area: 1 / 1 / 2 / 2;
+        }
+
+        #lab-container {
+            grid-area: 2 / 1 / 4 / 2;
+        }
+
+        #graph-container {
+            grid-area: 1 / 2 / 3 / 4;
+        }
+
+        #advice-container {
+            grid-area: 3 / 2 / 4 / 3;
+        }
+
+        #journal-container {
+            grid-area: 3 / 3 / 4 / 4;
+        }
+    }
+}
