@@ -50,16 +50,16 @@ header {
 
 .round-container {
     border-radius: 1.5rem;
+    text-align: center;
+    padding: 1.5rem;
 }
 
 /* INDIVIDUAL CONTAINER STYLES */
 #child-container, #lab-container {
     border: 0.07rem solid var(--color-grey);
-    text-align: center;
-    padding: 1.5rem;
     input {
         padding: 0.5rem 0.75rem;
-        border-radius: 1rem;
+        border-radius: 0.5rem;
         border: 0.07rem solid var(--color-grey);
     }
 }
@@ -72,6 +72,32 @@ input:focus{
 .double-input {
     display: flex;
     justify-content: space-between;
+    > .inp {
+        width: 55%;
+    }
+    > .btn {
+        /* Size */
+        width: 35%;
+
+        /* Style */
+        background: var(--color-black);
+        color: white;
+        border-radius: 0.5rem;
+        border: none;
+        text-decoration: none;
+        text-align: center;
+
+        /* Interactivity */
+        cursor: pointer;
+        transition: background 100ms ease-in-out,
+        transform 100ms ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+    > .btn:active {
+        transform: scale(0.97);
+    }
 }
 .full-input {
     width: 90%;
@@ -80,7 +106,7 @@ input:focus{
     width: 37%;
 }
 
-.child-info {
+.child-info, .lab-info {
     text-align: left;
     margin-top: 0.8rem;
     margin-bottom: 0.3rem;
@@ -100,4 +126,27 @@ input:focus{
 
 #journal-container {
     background-color: var(--color-yellow-lighter)
+}
+
+hr {
+    border: 0.005rem solid var(--color-grey);
+    margin: 1rem 0;
+}
+
+#lab-list {
+    img {
+        height: 1.5rem;}}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
+}
+
+.remove-lab {
+    background: none;
+    border: none;
+    cursor: pointer;
 }

@@ -10,7 +10,7 @@
 @media (min-width: 576px) {
     main {
         display: grid;
-        grid-template-columns: 1.25fr 2fr;
+        grid-template-columns: 1fr 1fr;
 
         #graph-container {
             grid-column: 1 / span 2;
@@ -20,7 +20,7 @@
 /* DESKTOP -> SPECILIZED DEKSTOP VIEW */
 @media (min-width: 992px) {
     main {
-        grid-template-columns: 1fr 2fr 0.75fr;
+        grid-template-columns: 1.4fr 1.75fr 1fr;
         grid-template-rows:1fr 0.5fr 1fr;
                                 /* row-s, col-s, row-e, row-s*/
         #child-container    {grid-area: 1 / 1 / 2 / 2;}

@@ -30,32 +30,84 @@
         <h2>Om barnet</h2>
         <!-- BIRTH WEIGHT INPUT-->
         <p class="child-info">Fødselsvekt</p>
-        <input class="full-input" id="birth-weight" type="number" placeholder="3450g" min="500" max="7000" required>
+        <input class="full-input" id="birth-weight" type="text" placeholder="3500g" required>
         <!-- BIRTH TIME INPUT-->
         <p class="child-info">Fødselstidpunkt</p>
         <div class="double-input">
-            <input class="half-input" id="birthtime-date" type="date" placeholder="02/09" value="" required>
-            <input class="half-input" id="birthtime-time"type="time" placeholder="19:30" required>
+            <input class="half-input" id="birthtime-date" type="text" placeholder="dd/mm" required>
+            <input class="half-input" id="birthtime-time" type="text" placeholder="hh:mm" required>
         </div>
         <!-- GASTATION AT BIRTH-->
         <p class="child-info">Gestasjons ved fødsel</p>
         <div class="double-input">
-            <input class="half-input" id="gestation-week" type="number" placeholder="39u" min="30" max="44" required>
-            <input class="half-input" id="gestation-day" type="number" placeholder="5d" min="0" max="6" required>
+            <input class="half-input" id="gestation-week" type="text" placeholder="39u" required>
+            <input class="half-input" id="gestation-day" type="text" placeholder="5d" required>
         </div>
     </div>
+    <!-- LAB CONTAINER-->
     <div id="lab-container" class="container round-container">
-        <p>Lab info</p>
+        <!-- ADD NEW LAB VALUE-->
+        <h2>Legg til målinger</h2>
+        <p class="lab-info">Tidspunkt for prøve</p>
+        <div class="double-input">
+            <input class="half-input" id="lab-date" type="text" placeholder="dd/mm" required>
+            <input class="half-input" id="lab-time" type="text" placeholder="hh:mm" required>
+        </div>
+        <p class="lab-info">S-bilirubin verdi</p>
+        <div class="double-input">
+            <input class="inp" id="bilirubin-value" type="text" placeholder="120 µmol/L" required>
+            <button class="btn" id="add-lab" onclick="addLab()">Legg til</button>
+        </div>
+        <!-- LAB VALUE LIST-->
+        <hr>
+        <ul id="lab-list">
+            <li class="individual-lab">
+                <button class="remove-lab" onclick="remove-lab"><img class="individual-lab-remove" src="assets/icons/fjern.svg" alt="delete-icon"></button>
+                <img src="assets/icons/blodprove-opasitet.svg" alt="blodprove-icon">
+                <img src="assets/icons/kalender-opasitet.svg" alt="calendar-icon">
+                <img src="assets/icons/tidspunkt-opasitet.svg" alt="time-icon">
+            </li>
+        </ul>
     </div>
     <div id="graph-container" class="container">
         <p>GRAPH</p>
     </div>
     <div id="advice-container" class="container round-container">
-        <p>Advice info</p>
+        <h2>Faglig råd</h2>
     </div>
     <div id="journal-container" class="container round-container">
-        <p>Journal info</p>
+        <h2>Journalføre?</h2>
     </div>
 </main>
+<script src="input-masking/inputmask.js"></script>
+<script src="input-masking/bindings/inputmask.binding.js"></script>
+<script>
+    //INPUT MASKING
+    Inputmask("9999g").mask("birth-weight")
+    Inputmask("99/99").mask("birthtime-date")
+    Inputmask("99:99").mask("birthtime-time")
+    Inputmask("99/99").mask("lab-date")
+    Inputmask("99:99").mask("lab-time")
+    Inputmask("99u").mask("gestation-week")
+    Inputmask("9d").mask("gestation-day")
+    Inputmask("99[9] µmol/L").mask("bilirubin-value")
+
+    //ADD CHILD INFO
+    let birthWeight = document.getElementById("birth-weight")
+    let birthDate = document.getElementById("birthtime-date")
+    let birthTime = document.getElementById("birthtime-time")
+    let gestationWeek = document.getElementById("gestation-week")
+    let gestationDay = document.getElementById("gestation-day")
+    //TODO Fix input formatting and datatypes with errorhandling
+
+    //ADD LAB
+    function addLab(){
+
+    }
+    //REMOVE LAB
+    function removeLab(){
+
+    }
+</script>
 </body>
 </html>
