@@ -1,9 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gult barn</title>
+    <!-- GOOGLE FONTS -->
+    <style>@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');</style>
+   <!-- STYLESHEETS -->
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/colors.css">
     <link rel="stylesheet" href="styles/typography.css">
@@ -11,6 +14,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+<script src="scripts/index.js"></script>
 <header>
     <div id="logo">
         <img src="assets/icons/logo.svg" alt="Gult barn logo">
@@ -25,16 +29,20 @@
     <div id="child-container" class="container round-container">
         <h2>Om barnet</h2>
         <!-- BIRTH WEIGHT INPUT-->
-        <p>Fødselsvekt</p>
-        <input type="number" placeholder="3450g" required>
+        <p class="child-info">Fødselsvekt</p>
+        <input class="full-input" id="birth-weight" type="number" placeholder="3450g" min="500" max="7000" required>
         <!-- BIRTH TIME INPUT-->
-        <p>Fødselstidpunkt</p>
-        <input type="date" placeholder="02/09" value="" required>
-        <input type="time" placeholder="19:30" required>
+        <p class="child-info">Fødselstidpunkt</p>
+        <div class="double-input">
+            <input class="half-input" id="birthtime-date" type="date" placeholder="02/09" value="" required>
+            <input class="half-input" id="birthtime-time"type="time" placeholder="19:30" required>
+        </div>
         <!-- GASTATION AT BIRTH-->
-        <p>Gestasjons ved fødsel</p>
-        <input type="number" placeholder="39u" required>
-        <input type="number" placeholder="5d" required>
+        <p class="child-info">Gestasjons ved fødsel</p>
+        <div class="double-input">
+            <input class="half-input" id="gestation-week" type="number" placeholder="39u" min="30" max="44" required>
+            <input class="half-input" id="gestation-day" type="number" placeholder="5d" min="0" max="6" required>
+        </div>
     </div>
     <div id="lab-container" class="container round-container">
         <p>Lab info</p>
