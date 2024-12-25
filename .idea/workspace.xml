@@ -8,8 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-masking/jquery.inputmask.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-masking/jquery.inputmask.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/colors.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/colors.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +52,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature/add-remove-labs",
+    "git-widget-placeholder": "feature/validation",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/agfr/IdeaProjects/bilirubin-pediatric-tool/input-masking",
     "node.js.detected.package.eslint": "true",

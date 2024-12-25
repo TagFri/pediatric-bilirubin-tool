@@ -29,18 +29,18 @@
         <h2>Om barnet</h2>
         <!-- BIRTH WEIGHT INPUT-->
         <p class="child-info">Fødselsvekt</p>
-        <input id="birth-weight" class="full-input child-info-input" type="text" placeholder="3500g" min="500" max="7000" required>
+        <input id="birth-weight" class="full-input child-info-input" type="text" placeholder="3500g">
         <!-- BIRTH TIME INPUT-->
         <p class="child-info">Fødselstidpunkt</p>
         <div class="double-input">
-            <input id="birthtime-date" class="half-input child-info-input" type="text" placeholder="dd/mm" max="31/12" required>
-            <input id="birthtime-time" class="half-input child-info-input" type="text" placeholder="hh:mm" max="23:59" required>
+            <input id="birthtime-date" class="half-input child-info-input" type="text" placeholder="dd/mm">
+            <input id="birthtime-time" class="half-input child-info-input" type="text" placeholder="hh:mm">
         </div>
         <!-- GASTATION AT BIRTH-->
         <p class="child-info">Gestasjons ved fødsel</p>
         <div class="double-input">
-            <input id="gestation-week" class="half-input child-info-input" type="text" placeholder="39u" min="22" max="45" required>
-            <input id="gestation-day" class="half-input child-info-input" type="text" placeholder="5d" min="0" max="6"required>
+            <input id="gestation-week" class="half-input child-info-input" type="text" placeholder="39u">
+            <input id="gestation-day" class="half-input child-info-input" type="text" placeholder="5d">
         </div>
     </div>
     <!-- LAB CONTAINER-->
@@ -49,12 +49,12 @@
         <h2>Legg til målinger</h2>
         <p class="lab-info">Tidspunkt for prøve</p>
         <div class="double-input">
-            <input class="half-input" id="lab-date" type="text" placeholder="dd/mm" max="31/12" required>
-            <input class="half-input" id="lab-time" type="text" placeholder="hh:mm" max="23:59" required>
+            <input class="half-input" id="lab-date" type="text" placeholder="dd/mm">
+            <input class="half-input" id="lab-time" type="text" placeholder="hh:mm">
         </div>
         <p class="lab-info">S-bilirubin verdi</p>
         <div class="double-input">
-            <input class="inp" id="bilirubin-value" type="text" placeholder="120 µmol/L" min="0" max="500" required>
+            <input class="inp" id="bilirubin-value" type="text" placeholder="120 µmol/L">
             <button class="btn" id="add-lab" onclick="addLab()">Legg til</button>
         </div>
         <p id="Lab-add-error" class="lab-info red-font"></p>
@@ -86,27 +86,40 @@
 <script src="input-masking/inputmask.js"></script>
 <script src="input-masking/bindings/inputmask.binding.js"></script>
 <script>
-    // INPUT VARIABLES
+    // CHILD COMPOUND VARIABLES
+    let birthDay = null
+    let birthMonth = null
+    let birthHour = null
+    let birthMinute = null
+    //CHILD COMPLETE VARIABLES
     let birthWeight = null
     let birthDate = null
-    let birthTime = null
-    let birthDateTime = null
-    let gestationWeek = null
     let gestationDay = null
+    let gestationWeek = null
+    //LAB COMPOUND VARIABLES
+    let labDay = null
+    let labMonth = null
+    let labHour = null
+    let labMinute = null
+    //LAB COMPLETE VARIABLES
+    let labValue = null
     let labDate = null
-    let labTime = null
-    let labDateTime = null
-    let bilirubinValue = null
 
     //INPUT MASKING
     Inputmask("999[9]g").mask("birth-weight")
-    Inputmask("9[9]/9[9]").mask("birthtime-date")
+    Inputmask("99/99").mask("birthtime-date")
     Inputmask("99:99").mask("birthtime-time")
     Inputmask("99/99").mask("lab-date")
     Inputmask("99:99").mask("lab-time")
     Inputmask("99u").mask("gestation-week")
     Inputmask("9d").mask("gestation-day")
     Inputmask("99[9] µmol/L").mask("bilirubin-value")
+
+    //VALIDATION ARRAYS
+    validDays = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
+    validMonths = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    validHours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+    validMinutes = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"]
 
     //Validate input on blur event
     inputs = document.getElementsByTagName("input")
@@ -118,53 +131,142 @@
         let min = this.getAttribute("min")
         let max = this.getAttribute("max")
 
-        //Function variable of interest
-        let value = null
-
-        // TRY TO CONVERT INPUT TO INTEGERS
-        try {
-            //REMOVE MASKING
-            value = this.value.replace(/g|u|d|:|\/| µmol\/L|/g, '')
-            //TODO remove mask and validate DATETIME
-        } catch {
-            //ERROR HANDLING
-            //this.classList.add("invalid-input")
-            console.log("Not possible to convert masking to integer")
-        }
-        // CHECK FOR MIN/MAX VALUES IN THE INPUT
-        if (value < min || value >= max) {
-            //this.classList.add("invalid-input")
-            console.log("Input breaks with applies min/max value")
-            //TODO Add error message under element
-        } else {
-            //this.classList.remove("invalid-input")
-            console.log("invalid input removed")
-        }
-        //UPDATE GLOBAL VARIABLE
-        if (this.id == "birth-weight") {
-            birthWeight = value
-        } else if (this.id == "birthtime-date") {
-            birthTime = value
-        } else if (this.id == "gestation-week") {
-            gestationWeek = value
-        } else if (this.id == "gestation-day") {
-            gestationDay = value
+        //REMOVE MASKING + VALIDATING INPUT
+        //FOR BIRTHDATE
+        if (this.id == "birthtime-date") {
+            //SPLIT AND SAVE DATE VARIABLES
+            birthDay = this.value.slice(0, 2) // get days
+            birthMonth = this.value.slice(3, 5) // get months
+            //VALIDATE DATE
+            if (validDays.includes(birthDay) && validMonths.includes(birthMonth)) {
+                this.classList.add("valid-input")
+                this.classList.remove("invalid-input")
+                convertToDateTime()
+            } else {
+                this.classList.add("invalid-input")
+                this.classList.remove("valid-input")
+            }
+        //FOR LABDATE
         } else if (this.id == "lab-date") {
-            labDate = value
+            //SPLIT AND SAVE DATE VARIABLES
+            labDay = this.value.slice(0, 2)
+            labMonth = this.value.slice(3, 5)
+            //VALIDATE DATE
+            if (validDays.includes(labDay) && validMonths.includes(labMonth)) {
+                this.classList.add("valid-input")
+                this.classList.remove("invalid-input")
+                convertToDateTime()
+            } else {
+                this.classList.add("invalid-input")
+                this.classList.remove("valid-input")
+            }
+        //FOR BIRTH TIME
+        } else if (this.id == "birthtime-time") {
+            //SPLIT AND SAVE TIME VARIABLES
+            birthHour = this.value.slice(0, 2)
+            birthMinute = this.value.slice(3, 5)
+            //VALIDATE TIME
+            if (birthHour <= 23 && birthHour >= 0 && birthMinute <= 59 && birthMinute > 0) {
+                //Add birthtime to global variable
+                this.classList.add("valid-input")
+                this.classList.remove("invalid-input")
+                convertToDateTime()
+            } else {
+                this.classList.add("invalid-input")
+                this.classList.remove("valid-input")
+            }
+        //FOR LAB TIME
         } else if (this.id == "lab-time") {
-            labTime = value
-        } else if (this.id == "bilirubin-value") {
-            bilirubinValue = value
+            //SPLIT AND SAVE TIME VARIABLES
+            labHour = this.value.slice(0, 2)
+            labMinute = this.value.slice(3, 5)
+            //VALIDATE TIME
+            if (labHour <= 23 && labHour >= 0 && labMinute <= 59 && labMinute > 0) {
+                //Add birthtime to global variable
+                this.classList.add("valid-input")
+                this.classList.remove("invalid-input")
+                convertToDateTime()
+            } else {
+                this.classList.add("invalid-input")
+                this.classList.remove("valid-input")
+            }
+
+        //FOR BIRTHWEIGHT
+        } else if (this.value.includes("g")) {
+            //CONVERT TO INTEGER(REMOVE ENDING, DECIMAL SYSTEM)
+            birthWeight = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
+            if (birthWeight >= 500 && birthWeight < 7500) {
+                this.classList.add("valid-input")
+                this.classList.remove("invalid-input")
+            } else {
+                this.classList.add("invalid-input")
+                this.classList.remove("valid-input")
+            }
+        //FOR GESTATIONAL DAYS
+        } else if (this.value.includes("d")) {
+            gestationDay = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
+            if (gestationDay <= 6 && gestationDay >= 0) {
+                this.classList.add("valid-input")
+                this.classList.remove("invalid-input")
+            } else {
+                this.classList.add("invalid-input")
+                this.classList.remove("valid-input")
+            }
+        //FOR GESTATIONAL WEEKS
+        } else if (this.value.includes("u")) {
+            gestationWeek = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
+            console.log(gestationWeek)
+            if (gestationWeek <= 45 && gestationWeek >= 22) {
+                this.classList.add("valid-input")
+                this.classList.remove("invalid-input")
+            } else {
+                this.classList.add("invalid-input")
+                this.classList.remove("valid-input")
+            }
+        } else if (this.value.includes(" µmol")) {
+            labValue = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
+            if (labValue <= 1000 && labValue >= 0) {
+                this.classList.add("valid-input")
+                this.classList.remove("invalid-input")
+            } else {
+                this.classList.add("invalid-input")
+                this.classList.remove("valid-input")
+            }
         }
 
         //TESTING
-        console.log("Global variable birthWeight: " + birthWeight)
-        console.log("Global variable birthTime: " + birthTime)
-        console.log("Global variable gestationWeek: " + gestationWeek)
-        console.log("Global variable gestationDay: " + gestationDay)
-        console.log("Global variable labDate: " + labDate)
-        console.log("Global variable labTime: " + labTime)
-        console.log("Global variable bilirubinValue: " + bilirubinValue)
+         console.log("Global variable birthWeight: " + birthWeight)
+         console.log("Global variable birthDate: " + birthDate)
+         console.log("Global variable gestationWeek: " + gestationWeek)
+         console.log("Global variable gestationDay: " + gestationDay)
+         console.log("Global variable labDate: " + labDate)
+         console.log("Global variable bilirubinValue: " + labValue)
+    }
+    function convertToDateTime() {
+        //CONVERT CHILD DATE
+        if (birthMonth && birthDay && birthHour && birthMinute) {
+            //CALCULATE MISSING YEAR INPUT
+            const dateToday = new Date()
+            let currentMonth = dateToday.getMonth() +1
+            if (dateToday.getMonth() > birthMonth) {
+                birthDate = new Date(dateToday.getFullYear() -1 + "-" + birthMonth + "-" + birthDay + "T" + birthHour + ":" + birthMinute)
+            } else {
+                birthDate = new Date(dateToday.getFullYear() + "-" + birthMonth + "-" + birthDay + "T" + birthHour + ":" + birthMinute)
+            }
+        }
+        console.log(birthDate)
+        //CONVERT LAB DATE
+        if (labMonth && labDay && labHour && labMinute) {
+            //CALCULATE MISSING YEAR INPUT
+            const dateToday = new Date()
+            let currentMonth = dateToday.getMonth() +1
+            if (dateToday.getMonth() > labMonth) {
+                labDate = new Date(dateToday.getFullYear() -1 + "-" + labMonth + "-" + labDay + "T" + labHour + ":" + labMinute)
+            } else {
+                labDate = new Date(dateToday.getFullYear() + "-" + labMonth + "-" + labDay + "T" + labHour + ":" + labMinute)
+            }
+        }
+        console.log(labDate)
     }
 
     function addLab() {

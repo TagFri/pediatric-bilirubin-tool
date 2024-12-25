@@ -65,13 +65,18 @@ header {
 }
 
 input:focus{
-    outline: 0.1rem solid var(--color-yellow-light);
+    outline: 0.1rem solid var(--color-yellow-medium);
     outline-offset: -0.075rem;
 }
 
 .invalid-input {
         outline: 0.1rem solid var(--color-red);
         outline-offset: -0.075rem;
+}
+
+.valid-input {
+    outline: 0.1rem solid var(--color-green);
+    outline-offset: -0.075rem;
 }
 
 .red-font {
