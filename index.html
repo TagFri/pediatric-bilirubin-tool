@@ -29,18 +29,18 @@
         <h2>Om barnet</h2>
         <!-- BIRTH WEIGHT INPUT-->
         <p class="child-info">Fødselsvekt</p>
-        <input id="birth-weight" class="full-input child-info-input" type="text" placeholder="3500g">
+        <input id="birth-weight" class="full-input child-info-input" type="text" inputmode="numeric" placeholder="3500g">
         <!-- BIRTH TIME INPUT-->
         <p class="child-info">Fødselstidpunkt</p>
         <div class="double-input">
-            <input id="birthtime-date" class="half-input child-info-input" type="text" placeholder="dd/mm">
-            <input id="birthtime-time" class="half-input child-info-input" type="text" placeholder="hh:mm">
+            <input id="birthtime-date" class="half-input child-info-input" type="text" inputmode="numeric" placeholder="dd/mm">
+            <input id="birthtime-time" class="half-input child-info-input" type="text" inputmode="numeric" placeholder="hh:mm">
         </div>
         <!-- GASTATION AT BIRTH-->
         <p class="child-info">Gestasjons ved fødsel</p>
         <div class="double-input">
-            <input id="gestation-week" class="half-input child-info-input" type="text" placeholder="39u">
-            <input id="gestation-day" class="half-input child-info-input" type="text" placeholder="5d">
+            <input id="gestation-week" class="half-input child-info-input" type="text" inputmode="numeric" placeholder="39u">
+            <input id="gestation-day" class="half-input child-info-input" type="text" inputmode="numeric" placeholder="5d">
         </div>
     </div>
     <!-- LAB CONTAINER-->
@@ -49,12 +49,12 @@
         <h2>Legg til målinger</h2>
         <p class="lab-info">Tidspunkt for prøve</p>
         <div class="double-input">
-            <input class="half-input" id="lab-date" type="text" placeholder="dd/mm">
-            <input class="half-input" id="lab-time" type="text" placeholder="hh:mm">
+            <input class="half-input" id="lab-date" type="text" inputmode="numeric" placeholder="dd/mm">
+            <input class="half-input" id="lab-time" type="text" inputmode="numeric" placeholder="hh:mm">
         </div>
         <p class="lab-info">S-bilirubin verdi</p>
         <div class="double-input">
-            <input class="inp" id="bilirubin-value" type="text" placeholder="120 µmol/L">
+            <input class="inp" id="bilirubin-value" type="text" inputmode="numeric" placeholder="120 µmol/L">
             <button class="btn" id="add-lab" onclick="addLab()">Legg til</button>
         </div>
         <p id="Lab-add-error" class="lab-info red-font"></p>
