@@ -14,14 +14,13 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<script src="scripts/index.js"></script>
 <header>
     <div id="logo">
         <img src="assets/icons/logo.svg" alt="Gult barn logo">
         <h1>gultbarn</h1>
     </div>
     <div id="about">
-        <h2 iD="about-us-tite">hilsen sommervikarene</h2>
+        <h2 id="aboutUsTite">hilsen sommervikarene</h2>
         <img src="assets/icons/utropstegn.svg" alt="about-logo">
     </div>
 </header>
@@ -30,18 +29,18 @@
         <h2>Om barnet</h2>
         <!-- BIRTH WEIGHT INPUT-->
         <p class="child-info">Fødselsvekt</p>
-        <input class="full-input" id="birth-weight" type="text" placeholder="3500g" required>
+        <input id="birth-weight" class="full-input child-info-input" type="text" placeholder="3500g" min="500" max="7000" required>
         <!-- BIRTH TIME INPUT-->
         <p class="child-info">Fødselstidpunkt</p>
         <div class="double-input">
-            <input class="half-input" id="birthtime-date" type="text" placeholder="dd/mm" required>
-            <input class="half-input" id="birthtime-time" type="text" placeholder="hh:mm" required>
+            <input id="birthtime-date" class="half-input child-info-input" type="text" placeholder="dd/mm" max="31/12" required>
+            <input id="birthtime-time" class="half-input child-info-input" type="text" placeholder="hh:mm" max="23:59" required>
         </div>
         <!-- GASTATION AT BIRTH-->
         <p class="child-info">Gestasjons ved fødsel</p>
         <div class="double-input">
-            <input class="half-input" id="gestation-week" type="text" placeholder="39u" required>
-            <input class="half-input" id="gestation-day" type="text" placeholder="5d" required>
+            <input id="gestation-week" class="half-input child-info-input" type="text" placeholder="39u" min="22" max="45" required>
+            <input id="gestation-day" class="half-input child-info-input" type="text" placeholder="5d" min="0" max="6"required>
         </div>
     </div>
     <!-- LAB CONTAINER-->
@@ -50,19 +49,20 @@
         <h2>Legg til målinger</h2>
         <p class="lab-info">Tidspunkt for prøve</p>
         <div class="double-input">
-            <input class="half-input" id="lab-date" type="text" placeholder="dd/mm" required>
-            <input class="half-input" id="lab-time" type="text" placeholder="hh:mm" required>
+            <input class="half-input" id="lab-date" type="text" placeholder="dd/mm" max="31/12" required>
+            <input class="half-input" id="lab-time" type="text" placeholder="hh:mm" max="23:59" required>
         </div>
         <p class="lab-info">S-bilirubin verdi</p>
         <div class="double-input">
-            <input class="inp" id="bilirubin-value" type="text" placeholder="120 µmol/L" required>
+            <input class="inp" id="bilirubin-value" type="text" placeholder="120 µmol/L" min="0" max="500" required>
             <button class="btn" id="add-lab" onclick="addLab()">Legg til</button>
         </div>
+        <p id="Lab-add-error" class="lab-info red-font"></p>
         <!-- LAB VALUE LIST-->
         <hr>
         <ul id="lab-list">
             <li class="individual-lab">
-                <button class="remove-lab" onclick="remove-lab"><img class="individual-lab-remove" src="assets/icons/fjern.svg" alt="delete-icon"></button>
+                <button class="remove-lab" onclick="removelab()"><img class="individual-lab-remove" src="assets/icons/fjern.svg" alt="delete-icon"></button>
                 <img src="assets/icons/blodprove-opasitet.svg" alt="blodprove-icon">
                 <img src="assets/icons/kalender-opasitet.svg" alt="calendar-icon">
                 <img src="assets/icons/tidspunkt-opasitet.svg" alt="time-icon">
@@ -70,7 +70,11 @@
         </ul>
     </div>
     <div id="graph-container" class="container">
-        <p>GRAPH</p>
+        <h3>BEREGNING</h3>
+        <p>Barnet sin lysgrense er: </p>
+        <h5>350</h5>
+        <p>Barnet vil krysse lysgrensa: </p>
+        <h4>29.12.2024 kl. 14:33</h4>
     </div>
     <div id="advice-container" class="container round-container">
         <h2>Faglig råd</h2>
@@ -82,9 +86,21 @@
 <script src="input-masking/inputmask.js"></script>
 <script src="input-masking/bindings/inputmask.binding.js"></script>
 <script>
+    // INPUT VARIABLES
+    let birthWeight = null
+    let birthDate = null
+    let birthTime = null
+    let birthDateTime = null
+    let gestationWeek = null
+    let gestationDay = null
+    let labDate = null
+    let labTime = null
+    let labDateTime = null
+    let bilirubinValue = null
+
     //INPUT MASKING
-    Inputmask("9999g").mask("birth-weight")
-    Inputmask("99/99").mask("birthtime-date")
+    Inputmask("999[9]g").mask("birth-weight")
+    Inputmask("9[9]/9[9]").mask("birthtime-date")
     Inputmask("99:99").mask("birthtime-time")
     Inputmask("99/99").mask("lab-date")
     Inputmask("99:99").mask("lab-time")
@@ -92,22 +108,109 @@
     Inputmask("9d").mask("gestation-day")
     Inputmask("99[9] µmol/L").mask("bilirubin-value")
 
-    //ADD CHILD INFO
-    let birthWeight = document.getElementById("birth-weight")
-    let birthDate = document.getElementById("birthtime-date")
-    let birthTime = document.getElementById("birthtime-time")
-    let gestationWeek = document.getElementById("gestation-week")
-    let gestationDay = document.getElementById("gestation-day")
-    //TODO Fix input formatting and datatypes with errorhandling
+    //Validate input on blur event
+    inputs = document.getElementsByTagName("input")
+    for (let input of inputs) {input.addEventListener("blur", validate)}
 
-    //ADD LAB
-    function addLab(){
+    //VALIDATE INPUTS AFTER BLUR
+    function validate() {
+        //Get requirement for input
+        let min = this.getAttribute("min")
+        let max = this.getAttribute("max")
 
+        //Function variable of interest
+        let value = null
+
+        // TRY TO CONVERT INPUT TO INTEGERS
+        try {
+            //REMOVE MASKING
+            value = this.value.replace(/g|u|d|:|\/| µmol\/L|/g, '')
+            //TODO remove mask and validate DATETIME
+        } catch {
+            //ERROR HANDLING
+            //this.classList.add("invalid-input")
+            console.log("Not possible to convert masking to integer")
+        }
+        // CHECK FOR MIN/MAX VALUES IN THE INPUT
+        if (value < min || value >= max) {
+            //this.classList.add("invalid-input")
+            console.log("Input breaks with applies min/max value")
+            //TODO Add error message under element
+        } else {
+            //this.classList.remove("invalid-input")
+            console.log("invalid input removed")
+        }
+        //UPDATE GLOBAL VARIABLE
+        if (this.id == "birth-weight") {
+            birthWeight = value
+        } else if (this.id == "birthtime-date") {
+            birthTime = value
+        } else if (this.id == "gestation-week") {
+            gestationWeek = value
+        } else if (this.id == "gestation-day") {
+            gestationDay = value
+        } else if (this.id == "lab-date") {
+            labDate = value
+        } else if (this.id == "lab-time") {
+            labTime = value
+        } else if (this.id == "bilirubin-value") {
+            bilirubinValue = value
+        }
+
+        //TESTING
+        console.log("Global variable birthWeight: " + birthWeight)
+        console.log("Global variable birthTime: " + birthTime)
+        console.log("Global variable gestationWeek: " + gestationWeek)
+        console.log("Global variable gestationDay: " + gestationDay)
+        console.log("Global variable labDate: " + labDate)
+        console.log("Global variable labTime: " + labTime)
+        console.log("Global variable bilirubinValue: " + bilirubinValue)
     }
-    //REMOVE LAB
-    function removeLab(){
 
+    function addLab() {
+        if (labDate && labTime && bilirubinValue) {
+            //List element
+            let li = document.createElement("li")
+            li.classList.add("individual-lab")
+            //Remove button
+            let btn = document.createElement("button")
+            btn.classList.add("remove-lab")
+            let img = document.createElement("img")
+            img.classList.add("individual-lab-remove")
+            img.src = "assets/icons/fjern.svg"
+            img.alt = "delete-icon"
+            btn.appendChild(img)
+            //ADD INPUT VALUES
+            let lab = document.createElement("p").innerText = bilirubinValue
+            let date = document.createElement("p").innerText = labDate
+            let time = document.createElement("p").innerText = labTime
+
+            console.log(li)
+            console.log(lab)
+            console.log(date)
+            console.log(time)
+            //APPEND ALL TO LI
+            li.appendChild(btn)
+            li.appendChild(lab)
+            li.appendChild(date)
+            li.appendChild(time)
+            //APPEND LI TO HTML
+            document.getElementById("lab-list").appendChild(li)
+
+            //RESET INPUT AND REMOVE ERROR MESSAGE
+            document.getElementById("lab-date").value = null
+            document.getElementById("lab-time").value = null
+            document.getElementById("bilirubin-value").value = null
+            document.getElementById("Lab-add-error").innerHTML = ""
+        } else {
+            document.getElementById("Lab-add-error").innerHTML = "Fyll inn alle feltene"
+        }
     }
+
+    function removelab() {
+        //TODO
+    }
+
 </script>
 </body>
 </html>
