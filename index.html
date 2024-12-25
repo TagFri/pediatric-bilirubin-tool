@@ -72,9 +72,9 @@
     <div id="graph-container" class="container">
         <h3>BEREGNING</h3>
         <p>Barnet sin lysgrense er: </p>
-        <h5>350</h5>
+        <h5 id="lightValue">Venter på data</h5>
         <p>Barnet vil krysse lysgrensa: </p>
-        <h4>29.12.2024 kl. 14:33</h4>
+        <h4 id="crossTime">Venter på data</h4>
     </div>
     <div id="advice-container" class="container round-container">
         <h2>Faglig råd</h2>
@@ -104,6 +104,11 @@
     //LAB COMPLETE VARIABLES
     let labValue = null
     let labDate = null
+    //LAB COLLECTION
+    let labCollection = {
+        // date: value
+        //TODO LAG Key:Value når man danner ul elemenet. Indeksering for fjerning?
+    }
 
     //INPUT MASKING
     Inputmask("999[9]g").mask("birth-weight")
@@ -233,14 +238,6 @@
                 this.classList.remove("valid-input")
             }
         }
-
-        //TESTING
-         console.log("Global variable birthWeight: " + birthWeight)
-         console.log("Global variable birthDate: " + birthDate)
-         console.log("Global variable gestationWeek: " + gestationWeek)
-         console.log("Global variable gestationDay: " + gestationDay)
-         console.log("Global variable labDate: " + labDate)
-         console.log("Global variable bilirubinValue: " + labValue)
     }
     function convertToDateTime() {
         //CONVERT CHILD DATE
@@ -269,48 +266,66 @@
         console.log(labDate)
     }
 
-    function addLab() {
-        if (labDate && labTime && bilirubinValue) {
-            //List element
-            let li = document.createElement("li")
-            li.classList.add("individual-lab")
-            //Remove button
-            let btn = document.createElement("button")
-            btn.classList.add("remove-lab")
-            let img = document.createElement("img")
-            img.classList.add("individual-lab-remove")
-            img.src = "assets/icons/fjern.svg"
-            img.alt = "delete-icon"
-            btn.appendChild(img)
-            //ADD INPUT VALUES
-            let lab = document.createElement("p").innerText = bilirubinValue
-            let date = document.createElement("p").innerText = labDate
-            let time = document.createElement("p").innerText = labTime
+        function addLab() {
+            if (labDate && labDate) {
+                const ul = document.getElementById("lab-list")
+                //List element
+                const li = document.createElement("li")
+                li.classList.add("individual-lab")
 
-            console.log(li)
-            console.log(lab)
-            console.log(date)
-            console.log(time)
-            //APPEND ALL TO LI
-            li.appendChild(btn)
-            li.appendChild(lab)
-            li.appendChild(date)
-            li.appendChild(time)
-            //APPEND LI TO HTML
-            document.getElementById("lab-list").appendChild(li)
+                //Remove button
+                const btn = document.createElement("button")
+                btn.classList.add("remove-lab")
+                const img = document.createElement("img")
+                img.classList.add("individual-lab-remove")
+                img.src = "assets/icons/fjern.svg"
+                img.alt = "delete-icon"
+                btn.appendChild(img)
+                //ADD INPUT VALUES
+                const lab = document.createElement("p")
+                lab.innerText = labValue
+                const date = document.createElement("p")
+                date.innerText =("0" + labDate.getDate()).slice(-2)+"/"+("0" + (labDate.getMonth() + 1)).slice(-2)
+                const time = document.createElement("p")
+                time.innerText = labDate.getHours() + ":" + labDate.getMinutes()
 
-            //RESET INPUT AND REMOVE ERROR MESSAGE
-            document.getElementById("lab-date").value = null
-            document.getElementById("lab-time").value = null
-            document.getElementById("bilirubin-value").value = null
-            document.getElementById("Lab-add-error").innerHTML = ""
-        } else {
-            document.getElementById("Lab-add-error").innerHTML = "Fyll inn alle feltene"
+                //APPEND ALL TO LI
+                li.appendChild(btn)
+                li.appendChild(lab)
+                li.appendChild(date)
+                li.appendChild(time)
+                //APPEND LI TO HTML
+                ul.appendChild(li)
+
+                //RESET INPUT AND REMOVE ERROR MESSAGE
+                resetLabInputs()
+                document.getElementById("Lab-add-error").innerHTML = ""
+            } else {
+                document.getElementById("Lab-add-error").innerHTML = "Fyll inn alle feltene"
+            }
         }
+    function resetLabInputs() {
+        //RESET INPUT FIELDS
+        const labDateInput = document.getElementById("lab-date")
+        labDateInput.value = null
+        labDateInput.classList.remove("valid-input")
+        const labTimeInput = document.getElementById("lab-time")
+        labTimeInput.value = null
+        labTimeInput.classList.remove("valid-input")
+        const bilirubinValueInput = document.getElementById("bilirubin-value")
+        bilirubinValueInput.value = null
+        bilirubinValueInput.classList.remove("valid-input")
+        //RESET GLOBAL VARIABLES
+        labDay = null
+        labMonth = null
+        labHour = null
+        labMinute = null
+        labValue = null
+        labDate = null
     }
-
     function removelab() {
-        //TODO
+        const ul = document.getElementById("lab-list")
+        ul.removeChild(ul.lastChild)
     }
 
 </script>
