@@ -20,8 +20,12 @@
 <script src="scripts/input-masking/inputmask.js"></script>
 <script src="scripts/input-masking/bindings/inputmask.binding.js"></script>
 <!-- OWN JS -->
-<script src="scripts/index.js"></script>
 <script src="scripts/inputValidation.js"></script>
+<script src="scripts/labHandling.js"></script>
+<script src="scripts/graphing.js"></script>
+<script src="scripts/advice.js"></script>
+<script src="scripts/journal.js"></script>
+<script src="scripts/index.js"></script>
 <!-- HTML -->
 <header>
     <div id="logo">
@@ -34,7 +38,10 @@
     </div>
 </header>
 <main>
+    <h1 id="testjs">Test</h1>
     <!-- INFO ABOUT CHILD -->
+    <!-- TODO: Add labels to all inputs -->
+    <!-- TODO: Add error msg to all inputs if non-valid -->
     <div id="child-container" class="container round-container">
         <h2>Om barnet</h2>
         <!-- BIRTH WEIGHT INPUT-->
@@ -146,13 +153,10 @@
 
     //VALIDATE INPUTS AFTER BLUR
     function validate() {
-        //Get requirement for input
-        let min = this.getAttribute("min")
-        let max = this.getAttribute("max")
 
         //REMOVE MASKING + VALIDATING INPUT
         //FOR BIRTHDATE
-        if (this.id == "birthtime-date") {
+        if (this.id === "birthtime-date") {
             //SPLIT AND SAVE DATE VARIABLES
             birthDay = this.value.slice(0, 2) // get days
             birthMonth = this.value.slice(3, 5) // get months
@@ -165,8 +169,8 @@
                 this.classList.add("invalid-input")
                 this.classList.remove("valid-input")
             }
-        //FOR LABDATE
-        } else if (this.id == "lab-date") {
+            //FOR LABDATE
+        } else if (this.id === "lab-date") {
             //SPLIT AND SAVE DATE VARIABLES
             labDay = this.value.slice(0, 2)
             labMonth = this.value.slice(3, 5)
@@ -179,8 +183,8 @@
                 this.classList.add("invalid-input")
                 this.classList.remove("valid-input")
             }
-        //FOR BIRTH TIME
-        } else if (this.id == "birthtime-time") {
+            //FOR BIRTH TIME
+        } else if (this.id === "birthtime-time") {
             //SPLIT AND SAVE TIME VARIABLES
             birthHour = this.value.slice(0, 2)
             birthMinute = this.value.slice(3, 5)
@@ -194,8 +198,8 @@
                 this.classList.add("invalid-input")
                 this.classList.remove("valid-input")
             }
-        //FOR LAB TIME
-        } else if (this.id == "lab-time") {
+            //FOR LAB TIME
+        } else if (this.id === "lab-time") {
             //SPLIT AND SAVE TIME VARIABLES
             labHour = this.value.slice(0, 2)
             labMinute = this.value.slice(3, 5)
@@ -210,7 +214,7 @@
                 this.classList.remove("valid-input")
             }
 
-        //FOR BIRTHWEIGHT
+            //FOR BIRTHWEIGHT
         } else if (this.value.includes("g")) {
             //CONVERT TO INTEGER(REMOVE ENDING, DECIMAL SYSTEM)
             birthWeight = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
@@ -221,7 +225,7 @@
                 this.classList.add("invalid-input")
                 this.classList.remove("valid-input")
             }
-        //FOR GESTATIONAL DAYS
+            //FOR GESTATIONAL DAYS
         } else if (this.value.includes("d")) {
             gestationDay = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
             if (gestationDay <= 6 && gestationDay >= 0) {
@@ -231,7 +235,7 @@
                 this.classList.add("invalid-input")
                 this.classList.remove("valid-input")
             }
-        //FOR GESTATIONAL WEEKS
+            //FOR GESTATIONAL WEEKS
         } else if (this.value.includes("u")) {
             gestationWeek = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
             console.log(gestationWeek)
@@ -258,8 +262,7 @@
         if (birthMonth && birthDay && birthHour && birthMinute) {
             //CALCULATE MISSING YEAR INPUT
             const dateToday = new Date()
-            let currentMonth = dateToday.getMonth() +1
-            if (dateToday.getMonth() > birthMonth) {
+            if (dateToday.getMonth()+1 > birthMonth) {
                 birthDate = new Date(dateToday.getFullYear() -1 + "-" + birthMonth + "-" + birthDay + "T" + birthHour + ":" + birthMinute)
             } else {
                 birthDate = new Date(dateToday.getFullYear() + "-" + birthMonth + "-" + birthDay + "T" + birthHour + ":" + birthMinute)
@@ -280,44 +283,44 @@
         console.log(labDate)
     }
 
-        function addLab() {
-            if (labDate && labDate) {
-                const ul = document.getElementById("lab-list")
-                //List element
-                const li = document.createElement("li")
-                li.classList.add("individual-lab")
+    function addLab() {
+        if (labDate && labDate) {
+            const ul = document.getElementById("lab-list")
+            //List element
+            const li = document.createElement("li")
+            li.classList.add("individual-lab")
 
-                //Remove button
-                const btn = document.createElement("button")
-                btn.classList.add("remove-lab")
-                const img = document.createElement("img")
-                img.classList.add("individual-lab-remove")
-                img.src = "assets/icons/fjern.svg"
-                img.alt = "delete-icon"
-                btn.appendChild(img)
-                //ADD INPUT VALUES
-                const lab = document.createElement("p")
-                lab.innerText = labValue
-                const date = document.createElement("p")
-                date.innerText =("0" + labDate.getDate()).slice(-2)+"/"+("0" + (labDate.getMonth() + 1)).slice(-2)
-                const time = document.createElement("p")
-                time.innerText = labDate.getHours() + ":" + labDate.getMinutes()
+            //Remove button
+            const btn = document.createElement("button")
+            btn.classList.add("remove-lab")
+            const img = document.createElement("img")
+            img.classList.add("individual-lab-remove")
+            img.src = "assets/icons/fjern.svg"
+            img.alt = "delete-icon"
+            btn.appendChild(img)
+            //ADD INPUT VALUES
+            const lab = document.createElement("p")
+            lab.innerText = labValue
+            const date = document.createElement("p")
+            date.innerText =("0" + labDate.getDate()).slice(-2)+"/"+("0" + (labDate.getMonth() + 1)).slice(-2)
+            const time = document.createElement("p")
+            time.innerText = labDate.getHours() + ":" + labDate.getMinutes()
 
-                //APPEND ALL TO LI
-                li.appendChild(btn)
-                li.appendChild(lab)
-                li.appendChild(date)
-                li.appendChild(time)
-                //APPEND LI TO HTML
-                ul.appendChild(li)
+            //APPEND ALL TO LI
+            li.appendChild(btn)
+            li.appendChild(lab)
+            li.appendChild(date)
+            li.appendChild(time)
+            //APPEND LI TO HTML
+            ul.appendChild(li)
 
-                //RESET INPUT AND REMOVE ERROR MESSAGE
-                resetLabInputs()
-                document.getElementById("Lab-add-error").innerHTML = ""
-            } else {
-                document.getElementById("Lab-add-error").innerHTML = "Fyll inn alle feltene"
-            }
+            //RESET INPUT AND REMOVE ERROR MESSAGE
+            resetLabInputs()
+            document.getElementById("Lab-add-error").innerHTML = ""
+        } else {
+            document.getElementById("Lab-add-error").innerHTML = "Fyll inn alle feltene"
         }
+    }
     function resetLabInputs() {
         //RESET INPUT FIELDS
         const labDateInput = document.getElementById("lab-date")

@@ -31,10 +31,10 @@ header {
             padding-left: 0.5rem;
         }
     }
-    #about-us-tite {
+    #about-us-title {
         font-weight: lighter;
     }
-    /* Respnsive header images compared to text*/
+    /* Responsive header images compared to text*/
     img {
         @media (max-width: 576px) {height: 1.5rem;}
         @media (min-width: 576px) {height: 2rem;}
@@ -130,6 +130,7 @@ input:focus{
     margin-top: 0.8rem;
     margin-bottom: 0.3rem;
 }
+
 
 #birthtime-date, #birthtime-time, #gestation-week, #gestation-day {
     text-align: center;

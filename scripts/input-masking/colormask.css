@@ -20,6 +20,7 @@ span.im-static {
     color: grey;
 }
 
+/*noinspection SpellCheckingInspection*/
 div.im-colormask {
     display: inline-block;
     border-style: groove;
@@ -28,6 +29,7 @@ div.im-colormask {
     cursor: text;
 }
 
+/*noinspection SpellCheckingInspection*/
 div.im-colormask > input, div.im-colormask > input:-webkit-autofill {
     position: absolute !important;
     display: inline-block;
@@ -42,22 +44,27 @@ div.im-colormask > input, div.im-colormask > input:-webkit-autofill {
     left: 0; /*calculated*/
 }
 
+/*noinspection SpellCheckingInspection*/
 div.im-colormask > input:focus {
     outline: none;
 }
 
+/*noinspection SpellCheckingInspection*/
 div.im-colormask > input::selection {
     background: none;
 }
 
+/*noinspection SpellCheckingInspection*/
 div.im-colormask > input::-moz-selection {
     background: none;
 }
 
+/*noinspection SpellCheckingInspection*/
 div.im-colormask > input:-webkit-autofill ~ div {
     background-color: rgb(255, 255, 255);
 }
 
+/*noinspection SpellCheckingInspection*/
 div.im-colormask > div {
     color: black;
     display: inline-block;

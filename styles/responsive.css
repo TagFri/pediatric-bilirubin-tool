@@ -17,7 +17,7 @@
         }
     }
 }
-/* DESKTOP -> SPECILIZED DEKSTOP VIEW */
+/* DESKTOP -> SPECILIZED DESKTOP VIEW */
 @media (min-width: 992px) {
     main {
         grid-template-columns: 1.4fr 1.75fr 1fr;
