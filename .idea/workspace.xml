@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2b72450-0a81-4fb6-8e89-fcfcd9ef9667" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/inputValidation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-masking/bindings/inputmask.binding.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/input-masking/bindings/inputmask.binding.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-masking/colormask.css" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/input-masking/colormask.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-masking/colormask.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/input-masking/colormask.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-masking/colormask.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/input-masking/colormask.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-masking/input-mask.iml" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/input-masking/input-mask.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-masking/inputmask.es6.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/input-masking/inputmask.es6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-masking/inputmask.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/input-masking/inputmask.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-masking/inputmask.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/input-masking/inputmask.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +25,13 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/graphing-variables" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -67,7 +64,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "cleanup/externalize-js-files",
+    "git-widget-placeholder": "js-cleanup",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/agfr/IdeaProjects/bilirubin-pediatric-tool/input-masking",
     "node.js.detected.package.eslint": "true",
