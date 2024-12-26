@@ -39,6 +39,11 @@ header {
         @media (max-width: 576px) {height: 1.5rem;}
         @media (min-width: 576px) {height: 2rem;}
     }
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
 }
 
 /* MAIN CONTAINER STYLES */
@@ -172,3 +177,4 @@ li {
         margin: 0.5rem;
     }
 }
+

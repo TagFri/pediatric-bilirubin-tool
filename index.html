@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="no">
+<html lang="nb">
 <head>
     <meta charset="UTF-8">
+    <!-- max-scale=1 : avoid zooming in on input on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Gult barn</title>
     <!-- GOOGLE FONTS -->
@@ -14,17 +15,22 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+<!-- JS SCRIPTS -->
+<script src="input-masking/inputmask.js"></script>
+<script src="input-masking/bindings/inputmask.binding.js"></script>
+<!-- HTML -->
 <header>
     <div id="logo">
         <img src="assets/icons/logo.svg" alt="Gult barn logo">
         <h1>gultbarn</h1>
     </div>
     <div id="about">
-        <h2 id="aboutUsTite">hilsen sommervikarene</h2>
-        <img src="assets/icons/utropstegn.svg" alt="about-logo">
+        <h2 id="about-us-title">hilsen sommervikarene</h2>
+        <button id="about-us-info" onclick="aboutUs()"><img src="assets/icons/utropstegn.svg" alt="about-logo"></button>
     </div>
 </header>
 <main>
+    <!-- INFO ABOUT CHILD -->
     <div id="child-container" class="container round-container">
         <h2>Om barnet</h2>
         <!-- BIRTH WEIGHT INPUT-->
@@ -58,7 +64,7 @@
             <button class="btn" id="add-lab" onclick="addLab()">Legg til</button>
         </div>
         <p id="Lab-add-error" class="lab-info red-font"></p>
-        <!-- LAB VALUE LIST-->
+        <!-- LAB VALUES LIST-->
         <hr>
         <ul id="lab-list">
             <li class="individual-lab">
@@ -69,6 +75,7 @@
             </li>
         </ul>
     </div>
+    <!-- GRAPH -->
     <div id="graph-container" class="container">
         <h3>BEREGNING</h3>
         <p>Barnet sin lysgrense er: </p>
@@ -76,15 +83,18 @@
         <p>Barnet vil krysse lysgrensa: </p>
         <h4 id="crossTime">Venter på data</h4>
     </div>
+    <!-- EXTRA QUESTIONS ACORDING TO GUIDELINES -->
+    <!-- TODO: Legg til nøkkelspørsmål ift bilirubinverdier -->
+    <!-- CLINICAL GUIDANCE / ADVICE -->
     <div id="advice-container" class="container round-container">
         <h2>Faglig råd</h2>
     </div>
+    <!-- PREFORMATTED AND FINISHED JOURNAL NOTE -->
     <div id="journal-container" class="container round-container">
         <h2>Journalføre?</h2>
     </div>
 </main>
-<script src="input-masking/inputmask.js"></script>
-<script src="input-masking/bindings/inputmask.binding.js"></script>
+<!-- SCRIPT TO BE EXTERNALISED LATER -->
 <script>
     // CHILD COMPOUND VARIABLES
     let birthDay = null
@@ -328,6 +338,10 @@
         ul.removeChild(ul.lastChild)
     }
 
+    function aboutUs() {
+        alert("Her kommer om oss, hvordan siden fungerer, samt en penere alert box når jeg får tid")
+        //Todo Lag custom JS alert box med info og flowchart...
+    }
 </script>
 </body>
 </html>
