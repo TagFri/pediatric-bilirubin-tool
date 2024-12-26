@@ -20,12 +20,8 @@
 <script src="scripts/input-masking/inputmask.js"></script>
 <script src="scripts/input-masking/bindings/inputmask.binding.js"></script>
 <!-- OWN JS -->
-<script src="scripts/inputValidation.js"></script>
-<script src="scripts/labHandling.js"></script>
-<script src="scripts/graphing.js"></script>
-<script src="scripts/advice.js"></script>
-<script src="scripts/journal.js"></script>
-<script src="scripts/index.js"></script>
+<script src="scripts/index.js" type="module"></script>
+<script src="scripts/inputValidation.js" type="module"></script>
 <!-- HTML -->
 <header>
     <div id="logo">
@@ -34,13 +30,11 @@
     </div>
     <div id="about">
         <h2 id="about-us-title">hilsen sommervikarene</h2>
-        <button id="about-us-info" onclick="aboutUs()"><img src="assets/icons/utropstegn.svg" alt="about-logo"></button>
+        <button id="about-us-info"><img src="assets/icons/utropstegn.svg" alt="about-logo"></button>
     </div>
 </header>
 <main>
     <!-- INFO ABOUT CHILD -->
-    <!-- TODO: Add labels to all inputs -->
-    <!-- TODO: Add error msg to all inputs if non-valid -->
     <div id="child-container" class="container round-container">
         <h2>Om barnet</h2>
         <!-- BIRTH WEIGHT INPUT-->
@@ -71,14 +65,14 @@
         <p class="lab-info">S-bilirubin verdi</p>
         <div class="double-input">
             <input class="inp" id="bilirubin-value" type="text" inputmode="numeric" placeholder="120 µmol/L">
-            <button class="btn" id="add-lab" onclick="addLab()">Legg til</button>
+            <button class="btn" id="add-lab">Legg til</button>
         </div>
         <p id="Lab-add-error" class="lab-info red-font"></p>
         <!-- LAB VALUES LIST-->
         <hr>
         <ul id="lab-list">
             <li class="individual-lab">
-                <button class="remove-lab" onclick="removelab()"><img class="individual-lab-remove" src="assets/icons/fjern.svg" alt="delete-icon"></button>
+                <button class="remove-lab"><img class="individual-lab-remove" src="assets/icons/fjern.svg" alt="delete-icon"></button>
                 <img src="assets/icons/blodprove-opasitet.svg" alt="blodprove-icon">
                 <img src="assets/icons/kalender-opasitet.svg" alt="calendar-icon">
                 <img src="assets/icons/tidspunkt-opasitet.svg" alt="time-icon">
@@ -106,275 +100,6 @@
 </main>
 <!-- SCRIPT TO BE EXTERNALISED LATER -->
 <script>
-    // CHILD COMPOUND VARIABLES
-    let birthDay = null
-    let birthMonth = null
-    let birthHour = null
-    let birthMinute = null
-
-    const childData = {
-        birthWeight: null,
-        birthDate: null,
-        gestationDay: null,
-        gestationWeek: null,
-    }
-    //LAB COMPOUND VARIABLES
-    let labDay = null
-    let labMonth = null
-    let labHour = null
-    let labMinute = null
-    //LAB COMPLETE VARIABLES
-    let labValue = null
-    let labDate = null
-    //LAB COLLECTION
-    let labCollection = {
-        // date: value
-        //TODO LAG Key:Value når man danner ul elemenet. Indeksering for fjerning?
-    }
-    //CHILD LIMIT
-    let childLightLimit = null
-    const utskiftnigsLimit = [[0,200],[3,400],[10,400]]
-    function setLightLimit() {
-        if (childData["birthWeight"] < 1000) {
-            childLightLimit = [[1,100],[4,150],[10,150]]
-        } else if (childData["birthWeight"] >= 1000 && childData["birthWeight"] < 1500) {
-            childLightLimit = [[1,125],[4,200],[10,200]]
-        } else if (childData["birthWeight"] >= 1500 && childData["birthWeight"] < 2500) {
-            childLightLimit = [[1,150],[4,250],[10,250]]
-        } else if (childData["birthWeight"] >= 2500 && childData["gestationWeek"] < 37) {
-            childLightLimit = [[1,150],[3,300],[10,300]]
-        } else if (childData["birthWeight"] >= 2500 && childData["gestationWeek"] >= 37) {
-            childLightLimit = [[1,175],[3,350],[10,350]]
-        }
-        console.log(childLightLimit)
-    }
-
-    //LAB VALUES
-    let labValues = []
-
-    //INPUT MASKING
-    Inputmask("999[9]g").mask("birth-weight")
-    Inputmask("99/99").mask("birthtime-date")
-    Inputmask("99:99").mask("birthtime-time")
-    Inputmask("99/99").mask("lab-date")
-    Inputmask("99:99").mask("lab-time")
-    Inputmask("99u").mask("gestation-week")
-    Inputmask("9d").mask("gestation-day")
-    Inputmask("99[9] µmol/L").mask("bilirubin-value")
-
-    //VALIDATION ARRAYS
-    validDays = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
-    validMonths = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
-    validHours = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
-    validMinutes = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"]
-
-    //Validate input on blur event
-    inputs = document.getElementsByTagName("input")
-    for (let input of inputs) {input.addEventListener("blur", validate)}
-
-    //VALIDATE INPUTS AFTER BLUR
-    function validate() {
-
-        //REMOVE MASKING + VALIDATING INPUT
-        //FOR BIRTHDATE
-        if (this.id === "birthtime-date") {
-            //SPLIT AND SAVE DATE VARIABLES
-            birthDay = this.value.slice(0, 2) // get days
-            birthMonth = this.value.slice(3, 5) // get months
-            //VALIDATE DATE
-            if (validDays.includes(birthDay) && validMonths.includes(birthMonth)) {
-                this.classList.add("valid-input")
-                this.classList.remove("invalid-input")
-                convertToDateTime()
-            } else {
-                this.classList.add("invalid-input")
-                this.classList.remove("valid-input")
-            }
-            //FOR LABDATE
-        } else if (this.id === "lab-date") {
-            //SPLIT AND SAVE DATE VARIABLES
-            labDay = this.value.slice(0, 2)
-            labMonth = this.value.slice(3, 5)
-            //VALIDATE DATE
-            if (validDays.includes(labDay) && validMonths.includes(labMonth)) {
-                this.classList.add("valid-input")
-                this.classList.remove("invalid-input")
-                convertToDateTime()
-            } else {
-                this.classList.add("invalid-input")
-                this.classList.remove("valid-input")
-            }
-            //FOR BIRTH TIME
-        } else if (this.id === "birthtime-time") {
-            //SPLIT AND SAVE TIME VARIABLES
-            birthHour = this.value.slice(0, 2)
-            birthMinute = this.value.slice(3, 5)
-            //VALIDATE TIME
-            if (birthHour <= 23 && birthHour >= 0 && birthMinute <= 59 && birthMinute > 0) {
-                //Add birthtime to global variable
-                this.classList.add("valid-input")
-                this.classList.remove("invalid-input")
-                convertToDateTime()
-            } else {
-                this.classList.add("invalid-input")
-                this.classList.remove("valid-input")
-            }
-            //FOR LAB TIME
-        } else if (this.id === "lab-time") {
-            //SPLIT AND SAVE TIME VARIABLES
-            labHour = this.value.slice(0, 2)
-            labMinute = this.value.slice(3, 5)
-            //VALIDATE TIME
-            if (labHour <= 23 && labHour >= 0 && labMinute <= 59 && labMinute > 0) {
-                //Add birthtime to global variable
-                this.classList.add("valid-input")
-                this.classList.remove("invalid-input")
-                convertToDateTime()
-            } else {
-                this.classList.add("invalid-input")
-                this.classList.remove("valid-input")
-            }
-
-            //FOR BIRTHWEIGHT
-        } else if (this.value.includes("g")) {
-            //CONVERT TO INTEGER(REMOVE ENDING, DECIMAL SYSTEM)
-            childData["birthWeight"] = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
-            if (childData["birthWeight"] >= 500 && childData["birthWeight"] < 7500) {
-                this.classList.add("valid-input")
-                this.classList.remove("invalid-input")
-            } else {
-                this.classList.add("invalid-input")
-                this.classList.remove("valid-input")
-            }
-            //FOR GESTATIONAL DAYS
-        } else if (this.value.includes("d")) {
-            childData["gestationDay"] = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
-            if (childData["gestationDay"] <= 6 && childData["gestationDay"] >= 0) {
-                this.classList.add("valid-input")
-                this.classList.remove("invalid-input")
-            } else {
-                this.classList.add("invalid-input")
-                this.classList.remove("valid-input")
-            }
-            //FOR GESTATIONAL WEEKS
-        } else if (this.value.includes("u")) {
-            childData["gestationWeek"] = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
-            console.log(childData["gestationWeek"])
-            if (childData["gestationWeek"] <= 45 && childData["gestationWeek"] >= 22) {
-                this.classList.add("valid-input")
-                this.classList.remove("invalid-input")
-            } else {
-                this.classList.add("invalid-input")
-                this.classList.remove("valid-input")
-            }
-        } else if (this.value.includes(" µmol")) {
-            labValue = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
-            if (labValue <= 1000 && labValue >= 0) {
-                this.classList.add("valid-input")
-                this.classList.remove("invalid-input")
-            } else {
-                this.classList.add("invalid-input")
-                this.classList.remove("valid-input")
-            }
-        }
-        if (childData["birthWeight"] && childData["gestationWeek"]) {
-            setLightLimit()
-        }
-    }
-    function convertToDateTime() {
-        //CONVERT CHILD DATE
-        if (birthMonth && birthDay && birthHour && birthMinute) {
-            //CALCULATE MISSING YEAR INPUT
-            const dateToday = new Date()
-            if (dateToday.getMonth()+1 > birthMonth) {
-                childData["birthDate"] = new Date(dateToday.getFullYear() -1 + "-" + birthMonth + "-" + birthDay + "T" + birthHour + ":" + birthMinute)
-            } else {
-                childData["birthDate"] = new Date(dateToday.getFullYear() + "-" + birthMonth + "-" + birthDay + "T" + birthHour + ":" + birthMinute)
-            }
-        }
-        console.log(childData["birthDate"])
-        //CONVERT LAB DATE
-        if (labMonth && labDay && labHour && labMinute) {
-            //CALCULATE MISSING YEAR INPUT
-            const dateToday = new Date()
-            let currentMonth = dateToday.getMonth() +1
-            if (dateToday.getMonth() > labMonth) {
-                labDate = new Date(dateToday.getFullYear() -1 + "-" + labMonth + "-" + labDay + "T" + labHour + ":" + labMinute)
-            } else {
-                labDate = new Date(dateToday.getFullYear() + "-" + labMonth + "-" + labDay + "T" + labHour + ":" + labMinute)
-            }
-        }
-        console.log(labDate)
-    }
-
-    function addLab() {
-        if (labDate && labDate) {
-            const ul = document.getElementById("lab-list")
-            //List element
-            const li = document.createElement("li")
-            li.classList.add("individual-lab")
-
-            //Remove button
-            const btn = document.createElement("button")
-            btn.classList.add("remove-lab")
-            const img = document.createElement("img")
-            img.classList.add("individual-lab-remove")
-            img.src = "assets/icons/fjern.svg"
-            img.alt = "delete-icon"
-            btn.appendChild(img)
-            //ADD INPUT VALUES
-            const lab = document.createElement("p")
-            lab.innerText = labValue
-            const date = document.createElement("p")
-            date.innerText =("0" + labDate.getDate()).slice(-2)+"/"+("0" + (labDate.getMonth() + 1)).slice(-2)
-            const time = document.createElement("p")
-            time.innerText = labDate.getHours() + ":" + labDate.getMinutes()
-
-            //APPEND ALL TO LI
-            li.appendChild(btn)
-            li.appendChild(lab)
-            li.appendChild(date)
-            li.appendChild(time)
-            //APPEND LI TO HTML
-            ul.appendChild(li)
-
-            //RESET INPUT AND REMOVE ERROR MESSAGE
-            resetLabInputs()
-            document.getElementById("Lab-add-error").innerHTML = ""
-        } else {
-            document.getElementById("Lab-add-error").innerHTML = "Fyll inn alle feltene"
-        }
-    }
-    function resetLabInputs() {
-        //RESET INPUT FIELDS
-        const labDateInput = document.getElementById("lab-date")
-        labDateInput.value = null
-        labDateInput.classList.remove("valid-input")
-        const labTimeInput = document.getElementById("lab-time")
-        labTimeInput.value = null
-        labTimeInput.classList.remove("valid-input")
-        const bilirubinValueInput = document.getElementById("bilirubin-value")
-        bilirubinValueInput.value = null
-        bilirubinValueInput.classList.remove("valid-input")
-        //RESET GLOBAL VARIABLES
-        labDay = null
-        labMonth = null
-        labHour = null
-        labMinute = null
-        labValue = null
-        labDate = null
-    }
-    function removelab() {
-        const ul = document.getElementById("lab-list")
-        ul.removeChild(ul.lastChild)
-    }
-
-    function aboutUs() {
-        alert("Her kommer om oss, hvordan siden fungerer, samt en penere alert box når jeg får tid")
-        //Todo Lag custom JS alert box med info og flowchart...
-    }
-
-
 </script>
 </body>
 </html>

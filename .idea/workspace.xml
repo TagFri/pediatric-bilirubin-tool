@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2b72450-0a81-4fb6-8e89-fcfcd9ef9667" name="Changes" comment="Empty js files">
+    <list default="true" id="b2b72450-0a81-4fb6-8e89-fcfcd9ef9667" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +25,13 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/graphing-variables" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -39,9 +46,6 @@
   }
 }</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="php" />
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -60,7 +64,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature/graphing-variables",
+    "git-widget-placeholder": "js-cleanup",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/agfr/IdeaProjects/bilirubin-pediatric-tool/input-masking",
     "node.js.detected.package.eslint": "true",
@@ -68,15 +72,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="QodanaReportsService">
-    <option name="descriptions">
-      <ReportDescription localRun="true" path="/private/var/folders/_r/4f1frh3x5t51gjt_p1g3dgvw0000gn/T/qodana_output/qodana.sarif.json" reportGuid="0bcfe1d2-5c23-46b5-af77-7f00157281b1" reportId="bilirubin-pediatric-tool/qodana/2024-12-26" />
-    </option>
-  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/input-masking" />
@@ -93,8 +91,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
       </set>
     </attachedChunks>
   </component>
@@ -119,20 +117,7 @@
       <workItem from="1735036250898" duration="241000" />
       <workItem from="1735036503544" duration="4226000" />
       <workItem from="1735166863105" duration="215000" />
-      <workItem from="1735208188368" duration="663000" />
-      <workItem from="1735209485861" duration="8000" />
-      <workItem from="1735209584253" duration="1280000" />
-      <workItem from="1735221217030" duration="639000" />
     </task>
-    <task id="LOCAL-00001" summary="Empty js files">
-      <option name="closed" value="true" />
-      <created>1735207266217</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1735207266217</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,9 +133,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Empty js files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Empty js files" />
   </component>
 </project>
