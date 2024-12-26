@@ -38,7 +38,6 @@
     </div>
 </header>
 <main>
-    <h1 id="testjs">Test</h1>
     <!-- INFO ABOUT CHILD -->
     <!-- TODO: Add labels to all inputs -->
     <!-- TODO: Add error msg to all inputs if non-valid -->
@@ -112,11 +111,13 @@
     let birthMonth = null
     let birthHour = null
     let birthMinute = null
-    //CHILD COMPLETE VARIABLES
-    let birthWeight = null
-    let birthDate = null
-    let gestationDay = null
-    let gestationWeek = null
+
+    const childData = {
+        birthWeight: null,
+        birthDate: null,
+        gestationDay: null,
+        gestationWeek: null,
+    }
     //LAB COMPOUND VARIABLES
     let labDay = null
     let labMonth = null
@@ -130,6 +131,26 @@
         // date: value
         //TODO LAG Key:Value når man danner ul elemenet. Indeksering for fjerning?
     }
+    //CHILD LIMIT
+    let childLightLimit = null
+    const utskiftnigsLimit = [[0,200],[3,400],[10,400]]
+    function setLightLimit() {
+        if (childData["birthWeight"] < 1000) {
+            childLightLimit = [[1,100],[4,150],[10,150]]
+        } else if (childData["birthWeight"] >= 1000 && childData["birthWeight"] < 1500) {
+            childLightLimit = [[1,125],[4,200],[10,200]]
+        } else if (childData["birthWeight"] >= 1500 && childData["birthWeight"] < 2500) {
+            childLightLimit = [[1,150],[4,250],[10,250]]
+        } else if (childData["birthWeight"] >= 2500 && childData["gestationWeek"] < 37) {
+            childLightLimit = [[1,150],[3,300],[10,300]]
+        } else if (childData["birthWeight"] >= 2500 && childData["gestationWeek"] >= 37) {
+            childLightLimit = [[1,175],[3,350],[10,350]]
+        }
+        console.log(childLightLimit)
+    }
+
+    //LAB VALUES
+    let labValues = []
 
     //INPUT MASKING
     Inputmask("999[9]g").mask("birth-weight")
@@ -217,8 +238,8 @@
             //FOR BIRTHWEIGHT
         } else if (this.value.includes("g")) {
             //CONVERT TO INTEGER(REMOVE ENDING, DECIMAL SYSTEM)
-            birthWeight = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
-            if (birthWeight >= 500 && birthWeight < 7500) {
+            childData["birthWeight"] = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
+            if (childData["birthWeight"] >= 500 && childData["birthWeight"] < 7500) {
                 this.classList.add("valid-input")
                 this.classList.remove("invalid-input")
             } else {
@@ -227,8 +248,8 @@
             }
             //FOR GESTATIONAL DAYS
         } else if (this.value.includes("d")) {
-            gestationDay = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
-            if (gestationDay <= 6 && gestationDay >= 0) {
+            childData["gestationDay"] = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
+            if (childData["gestationDay"] <= 6 && childData["gestationDay"] >= 0) {
                 this.classList.add("valid-input")
                 this.classList.remove("invalid-input")
             } else {
@@ -237,9 +258,9 @@
             }
             //FOR GESTATIONAL WEEKS
         } else if (this.value.includes("u")) {
-            gestationWeek = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
-            console.log(gestationWeek)
-            if (gestationWeek <= 45 && gestationWeek >= 22) {
+            childData["gestationWeek"] = parseInt(this.value.replace(/g|u|d| µmol\/L|/g, ''),10)
+            console.log(childData["gestationWeek"])
+            if (childData["gestationWeek"] <= 45 && childData["gestationWeek"] >= 22) {
                 this.classList.add("valid-input")
                 this.classList.remove("invalid-input")
             } else {
@@ -256,6 +277,9 @@
                 this.classList.remove("valid-input")
             }
         }
+        if (childData["birthWeight"] && childData["gestationWeek"]) {
+            setLightLimit()
+        }
     }
     function convertToDateTime() {
         //CONVERT CHILD DATE
@@ -263,12 +287,12 @@
             //CALCULATE MISSING YEAR INPUT
             const dateToday = new Date()
             if (dateToday.getMonth()+1 > birthMonth) {
-                birthDate = new Date(dateToday.getFullYear() -1 + "-" + birthMonth + "-" + birthDay + "T" + birthHour + ":" + birthMinute)
+                childData["birthDate"] = new Date(dateToday.getFullYear() -1 + "-" + birthMonth + "-" + birthDay + "T" + birthHour + ":" + birthMinute)
             } else {
-                birthDate = new Date(dateToday.getFullYear() + "-" + birthMonth + "-" + birthDay + "T" + birthHour + ":" + birthMinute)
+                childData["birthDate"] = new Date(dateToday.getFullYear() + "-" + birthMonth + "-" + birthDay + "T" + birthHour + ":" + birthMinute)
             }
         }
-        console.log(birthDate)
+        console.log(childData["birthDate"])
         //CONVERT LAB DATE
         if (labMonth && labDay && labHour && labMinute) {
             //CALCULATE MISSING YEAR INPUT
@@ -349,6 +373,8 @@
         alert("Her kommer om oss, hvordan siden fungerer, samt en penere alert box når jeg får tid")
         //Todo Lag custom JS alert box med info og flowchart...
     }
+
+
 </script>
 </body>
 </html>
