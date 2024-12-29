@@ -14,6 +14,12 @@ function eventListeners() {
     document.getElementById("add-lab").addEventListener("click", addLabCheck())
 }
 
+//RAW INPUT HANDLING (PARSE TO INTEGER + VALIDATE INPUT)
+function inputHandling(id, unformattedValue) {
+    let formattedValues = inputToIntegers(unformattedValue)
+    validation(id, formattedValues)
+}
+
 //CONVERT INPUT TO INTEGERS
 function inputToIntegers(unformattedValue) {
     //Format values: remove masking and split minutes/hours & months/days
@@ -61,12 +67,14 @@ function validation(id, integer) {
     //Validate time input
     if (id.includes("time")) {
         (integer != null
-            &&integer[0] >= validationCriteria["time"][0][0]
+            &&  integer[0] >= validationCriteria["time"][0][0]
             && integer[0] <= validationCriteria["time"][0][1]
             && integer[1] >= validationCriteria["time"][1][0]
-            && integer[1] <= validationCriteria["time"][1][1]
-        )?addValidInput(id, integer):addInvalidInput(id);
-    } else if (id.includes("date")) {
+            && integer[1] <= validationCriteria["time"][1][1])
+        ?addValidInput(id, integer):addInvalidInput(id);
+    }
+    //Validate date input
+    else if (id.includes("date")) {
         (integer != null
             &&integer[0] >= validationCriteria["date"][0][0]
             && integer[0] <= validationCriteria["date"][0][1]
@@ -81,15 +89,13 @@ function validation(id, integer) {
         && integer <= validationCriteria[id][1]
         )?addValidInput(id, integer):addInvalidInput(id);
     }
+    //CHECK IF ALL INPUTS FOR CHILD IS VALID
     validateChild()
 }
-
+//IF ALL CHILD INPUTS ARE VALID, MAKE CUSTOM GRAPH FOR THE CHILD
 function validateChild() {(Object.keys(validatedChildInputs).length === 5)?addChildGraph():removeChildGraph();}
+
+//WHEN ADD LAB BUTTON PRESSED -> ADD LAB OR DISPLAY ERROR IF NOT ALL INPUTS ARE VALID
 function addLabCheck() {
     (Object.keys(validatedLabInputs).length === 3)?addLab():labError()
-}
-//INPUT HANDLING
-function inputHandling(id, unformattedValue) {
-    let formattedValues = inputToIntegers(unformattedValue)
-    validation(id, formattedValues)
 }
