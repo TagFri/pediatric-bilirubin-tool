@@ -5,6 +5,7 @@
     <!-- max-scale=1 : avoid zooming in on input on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Gult barn</title>
+    <link rel="icon" type="image/x-icon" href="./assets/icons/logo.svg">
     <!-- GOOGLE FONTS -->
     <style>@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');</style>
    <!-- STYLESHEETS -->
@@ -20,8 +21,7 @@
 <script src="scripts/input-masking/inputmask.js"></script>
 <script src="scripts/input-masking/bindings/inputmask.binding.js"></script>
 <!-- OWN JS -->
-<script src="scripts/index.js" type="module"></script>
-<script src="scripts/inputValidation.js" type="module"></script>
+<script type="module" src="scripts/index.js"></script>
 <!-- HTML -->
 <header>
     <div id="logo">
@@ -33,7 +33,7 @@
         <button id="about-us-info"><img src="assets/icons/utropstegn.svg" alt="about-logo"></button>
     </div>
 </header>
-<main>
+<main id="main">
     <!-- INFO ABOUT CHILD -->
     <div id="child-container" class="container round-container">
         <h2>Om barnet</h2>
@@ -98,8 +98,5 @@
         <h2>Journalføre?</h2>
     </div>
 </main>
-<!-- SCRIPT TO BE EXTERNALISED LATER -->
-<script>
-</script>
 </body>
 </html>
