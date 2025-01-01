@@ -132,7 +132,7 @@ input:focus{
 }
 
 
-#birth-date, #birth-time, #gestation-week, #gestation-day {
+#birthtime-date, #birthtime-time, #gestation-week, #gestation-day {
     text-align: center;
 }
 
@@ -170,3 +170,8 @@ li {
     border: none;
     cursor: pointer;
 }
+
+#graph-container {
+    width: 100%;
+}
+

@@ -1,9 +1,9 @@
-import {createLabGraph} from "./graphing.js"
+import {graphLab} from "./graphing.js"
 export {addLab, labError}
 
 function addLab() {
     //todo
-    createLabGraph()
+    graphLab()
 }
 
 function labError() {

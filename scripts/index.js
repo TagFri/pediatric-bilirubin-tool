@@ -1,7 +1,7 @@
 import {masking} from './masking.js';
-import {eventListeners} from './inputHandling.js';
-import {initiateGraph} from "./graphing.js";
+import {eventListeners} from './validation.js';
+import {basicGraph} from "./graphing.js";
 
 masking();
 eventListeners();
-initiateGraph()
+basicGraph();
