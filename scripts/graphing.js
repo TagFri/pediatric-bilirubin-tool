@@ -24,14 +24,14 @@ function initiateGraph() {
                 datasets: [
                     {//DATASET 1 -> CHILD LIGHT LIMIT
                         label: "Lysgrense",
-                        data: [],
+                        data: [1],
                         spanGaps: true,
                         borderColor: black, //Yellow colour
                         pointRadius: 0,
                     },
                     {//DATASET 2 -> LAB VALUES
                         label: "Laboratorieverdier",
-                        data: [],
+                        data: [1],
                         spanGaps: true,
                         borderColor: yellowStrong,
                         pointRadius: 5
