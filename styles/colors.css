@@ -1,5 +1,6 @@
 :root {
     /* COLORS */
+    /* Must be updated in graphing.js if changed */
     --color-yellow-strong: #F5A201;
     --color-yellow-medium: #FBC169;
     --color-yellow-light: #FFE2B1;

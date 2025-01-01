@@ -8,9 +8,18 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/advice.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/graphing.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/graphing.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/journal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/labHandling.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/labHandling.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/masking.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/masking.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/inputHandling.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/colors.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/colors.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/responsive.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,25 +69,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript Debug.idex.html.executor": "Run",
-    "JavaScript Debug.index.html.executor": "Run",
-    "Node.js.index.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature/chartJs",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/agfr/IdeaProjects/bilirubin-pediatric-tool/input-masking",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.idex.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.index.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/childGraphing&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/agfr/IdeaProjects/bilirubin-pediatric-tool/input-masking&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/input-masking" />
@@ -124,6 +134,8 @@
       <workItem from="1735329150606" duration="648000" />
       <workItem from="1735329836757" duration="648000" />
       <workItem from="1735384646057" duration="15729000" />
+      <workItem from="1735562532840" duration="8834000" />
+      <workItem from="1735759918841" duration="6405000" />
     </task>
     <servers />
   </component>
