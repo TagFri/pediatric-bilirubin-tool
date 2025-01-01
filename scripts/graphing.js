@@ -24,14 +24,14 @@ function initiateGraph() {
                 datasets: [
                     {//DATASET 1 -> CHILD LIGHT LIMIT
                         label: "Lysgrense",
-                        data: [1],
+                        data: [-10],
                         spanGaps: true,
                         borderColor: black, //Yellow colour
                         pointRadius: 0,
                     },
                     {//DATASET 2 -> LAB VALUES
                         label: "Laboratorieverdier",
-                        data: [1],
+                        data: [-10],
                         spanGaps: true,
                         borderColor: yellowStrong,
                         pointRadius: 5
@@ -72,6 +72,7 @@ function initiateGraph() {
                     y: {
                         //Starter Y-akse på 0
                         beginAtZero: true,
+                        min: 0,
                         suggestedMax: 200,
                         //Markering hvert 50 på y-akse
                         ticks: {
