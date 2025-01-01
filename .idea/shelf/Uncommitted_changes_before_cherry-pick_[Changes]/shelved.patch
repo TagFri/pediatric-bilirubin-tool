@@ -1,0 +1,50 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"b2b72450-0a81-4fb6-8e89-fcfcd9ef9667\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/package.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/package.json\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ComposerSettings\">\n    <execution />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"JavaScript File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"feature/graphing-variables\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n    <option name=\"RESET_MODE\" value=\"HARD\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;TagFri&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/TagFri/pediatric-bilirubin-tool.git&quot;,\n    &quot;accountId&quot;: &quot;3984ea30-ec04-4905-a477-c570612e158f&quot;\n  }\n}</component>\n  <component name=\"PhpWorkspaceProjectConfiguration\" interpreter_name=\"php\" />\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 0\n}</component>\n  <component name=\"ProjectId\" id=\"2qQq6f9AmEHztDFYpVXobhjdjY7\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"JavaScript Debug.idex.html.executor\": \"Run\",\n    \"JavaScript Debug.index.html.executor\": \"Run\",\n    \"Node.js.graphing.js.executor\": \"Run\",\n    \"Node.js.index.js.executor\": \"Run\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"git-widget-placeholder\": \"main\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"last_opened_file_path\": \"/Users/agfr/IdeaProjects/bilirubin-pediatric-tool/input-masking\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"ts.external.directory.path\": \"/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/input-masking\" />\n      <recent name=\"$PROJECT_DIR$/dist\" />\n      <recent name=\"$PROJECT_DIR$\" />\n      <recent name=\"$PROJECT_DIR$/assets\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/scripts\" />\n      <recent name=\"$PROJECT_DIR$\" />\n      <recent name=\"$PROJECT_DIR$/assets\" />\n    </key>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218\" />\n        <option value=\"bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"b2b72450-0a81-4fb6-8e89-fcfcd9ef9667\" name=\"Changes\" comment=\"\" />\n      <created>1734604972595</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1734604972595</updated>\n      <workItem from=\"1734604973956\" duration=\"1468000\" />\n      <workItem from=\"1734863036654\" duration=\"79000\" />\n      <workItem from=\"1734863118371\" duration=\"5036000\" />\n      <workItem from=\"1734983829360\" duration=\"697000\" />\n      <workItem from=\"1735032704424\" duration=\"902000\" />\n      <workItem from=\"1735035304226\" duration=\"218000\" />\n      <workItem from=\"1735035543900\" duration=\"540000\" />\n      <workItem from=\"1735036146783\" duration=\"6000\" />\n      <workItem from=\"1735036157949\" duration=\"21000\" />\n      <workItem from=\"1735036221907\" duration=\"23000\" />\n      <workItem from=\"1735036250898\" duration=\"241000\" />\n      <workItem from=\"1735036503544\" duration=\"4226000\" />\n      <workItem from=\"1735166863105\" duration=\"215000\" />\n      <workItem from=\"1735329150606\" duration=\"648000\" />\n      <workItem from=\"1735329836757\" duration=\"648000\" />\n      <workItem from=\"1735384646057\" duration=\"15729000\" />\n      <workItem from=\"1735562532840\" duration=\"8834000\" />\n      <workItem from=\"1735759918841\" duration=\"6405000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ed56cd7a39aaca4cc333cdcd5fa603e3ab11f757)
++++ b/.idea/workspace.xml	(date 1735768886906)
+@@ -6,7 +6,6 @@
+   <component name="ChangeListManager">
+     <list default="true" id="b2b72450-0a81-4fb6-8e89-fcfcd9ef9667" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -59,8 +58,8 @@
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
+     "JavaScript Debug.idex.html.executor": "Run",
+-    "JavaScript Debug.index.html.executor": "Run",
+-    "Node.js.graphing.js.executor": "Run",
++    "JavaScript Debug.index.html.executor": "Debug",
++    "Node.js.graphing.js.executor": "Debug",
+     "Node.js.index.js.executor": "Run",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "RunOnceActivity.git.unshallow": "true",
+@@ -89,6 +88,20 @@
+       <recent name="$PROJECT_DIR$" />
+       <recent name="$PROJECT_DIR$/assets" />
+     </key>
++  </component>
++  <component name="RunManager" selected="JavaScript Debug.index.html">
++    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/bilirubin-pediatric-tool/index.html" useBuiltInWebServerPort="true">
++      <method v="2" />
++    </configuration>
++    <configuration name="graphing.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/scripts/graphing.js" working-dir="$PROJECT_DIR$/scripts">
++      <method v="2" />
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="JavaScript Debug.index.html" />
++        <item itemvalue="Node.js.graphing.js" />
++      </list>
++    </recent_temporary>
+   </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
